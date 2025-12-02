@@ -1,0 +1,1203 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/anamacias9850-arch/Proyecto-Integrador-3er.-semestre/blob/main/ML1.ipynb_Colab%20de%20Machine%20Learning\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "ByOhLHzZ82EA"
+      },
+      "source": [
+        "![CUGDL.jpeg](data:image/jpeg;base64,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)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "XSR5QL6G9JVD"
+      },
+      "source": [
+        "# PROYECTO INTEGRADOR DE MACHINE LEARNING\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "kzlSGvbl7Zjc"
+      },
+      "outputs": [],
+      "source": [
+        "# INTEGRANTES DEL EQUIPO\n",
+        "#\n",
+        "# Ana Elena Macias Amezcua\n",
+        "#\n",
+        "# Edgar Raymundo González Torres\n",
+        "#\n",
+        "# Patricia Jaime Pérez"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "1pa_eJgUH1S7"
+      },
+      "source": [
+        "Paso 1: Importar Herramientas y Subir Archivo\n",
+        "Primero, traemos las librerías y habilitamos la carga del archivo."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 56
+        },
+        "id": "uA2ow6E-H4S4",
+        "outputId": "05b9a390-2ed8-45c2-85ed-d7f2feb13fe5"
+      },
+      "outputs": [
+        {
+          "metadata": {
+            "tags": null
+          },
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "Por favor, selecciona el archivo 'BASE DATOS EN PROYECTO VP 2024-2025 _AEMA.CSV.csv' en el botón de abajo:\n"
+          ]
+        },
+        {
+          "data": {
+            "text/html": [
+              "\n",
+              "     <input type=\"file\" id=\"files-c9842125-62e9-4c5a-880f-8d988aaaf5f7\" name=\"files[]\" multiple disabled\n",
+              "        style=\"border:none\" />\n",
+              "     <output id=\"result-c9842125-62e9-4c5a-880f-8d988aaaf5f7\">\n",
+              "      Upload widget is only available when the cell has been executed in the\n",
+              "      current browser session. Please rerun this cell to enable.\n",
+              "      </output>\n",
+              "      <script>// Copyright 2017 Google LLC\n",
+              "//\n",
+              "// Licensed under the Apache License, Version 2.0 (the \"License\");\n",
+              "// you may not use this file except in compliance with the License.\n",
+              "// You may obtain a copy of the License at\n",
+              "//\n",
+              "//      http://www.apache.org/licenses/LICENSE-2.0\n",
+              "//\n",
+              "// Unless required by applicable law or agreed to in writing, software\n",
+              "// distributed under the License is distributed on an \"AS IS\" BASIS,\n",
+              "// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n",
+              "// See the License for the specific language governing permissions and\n",
+              "// limitations under the License.\n",
+              "\n",
+              "/**\n",
+              " * @fileoverview Helpers for google.colab Python module.\n",
+              " */\n",
+              "(function(scope) {\n",
+              "function span(text, styleAttributes = {}) {\n",
+              "  const element = document.createElement('span');\n",
+              "  element.textContent = text;\n",
+              "  for (const key of Object.keys(styleAttributes)) {\n",
+              "    element.style[key] = styleAttributes[key];\n",
+              "  }\n",
+              "  return element;\n",
+              "}\n",
+              "\n",
+              "// Max number of bytes which will be uploaded at a time.\n",
+              "const MAX_PAYLOAD_SIZE = 100 * 1024;\n",
+              "\n",
+              "function _uploadFiles(inputId, outputId) {\n",
+              "  const steps = uploadFilesStep(inputId, outputId);\n",
+              "  const outputElement = document.getElementById(outputId);\n",
+              "  // Cache steps on the outputElement to make it available for the next call\n",
+              "  // to uploadFilesContinue from Python.\n",
+              "  outputElement.steps = steps;\n",
+              "\n",
+              "  return _uploadFilesContinue(outputId);\n",
+              "}\n",
+              "\n",
+              "// This is roughly an async generator (not supported in the browser yet),\n",
+              "// where there are multiple asynchronous steps and the Python side is going\n",
+              "// to poll for completion of each step.\n",
+              "// This uses a Promise to block the python side on completion of each step,\n",
+              "// then passes the result of the previous step as the input to the next step.\n",
+              "function _uploadFilesContinue(outputId) {\n",
+              "  const outputElement = document.getElementById(outputId);\n",
+              "  const steps = outputElement.steps;\n",
+              "\n",
+              "  const next = steps.next(outputElement.lastPromiseValue);\n",
+              "  return Promise.resolve(next.value.promise).then((value) => {\n",
+              "    // Cache the last promise value to make it available to the next\n",
+              "    // step of the generator.\n",
+              "    outputElement.lastPromiseValue = value;\n",
+              "    return next.value.response;\n",
+              "  });\n",
+              "}\n",
+              "\n",
+              "/**\n",
+              " * Generator function which is called between each async step of the upload\n",
+              " * process.\n",
+              " * @param {string} inputId Element ID of the input file picker element.\n",
+              " * @param {string} outputId Element ID of the output display.\n",
+              " * @return {!Iterable<!Object>} Iterable of next steps.\n",
+              " */\n",
+              "function* uploadFilesStep(inputId, outputId) {\n",
+              "  const inputElement = document.getElementById(inputId);\n",
+              "  inputElement.disabled = false;\n",
+              "\n",
+              "  const outputElement = document.getElementById(outputId);\n",
+              "  outputElement.innerHTML = '';\n",
+              "\n",
+              "  const pickedPromise = new Promise((resolve) => {\n",
+              "    inputElement.addEventListener('change', (e) => {\n",
+              "      resolve(e.target.files);\n",
+              "    });\n",
+              "  });\n",
+              "\n",
+              "  const cancel = document.createElement('button');\n",
+              "  inputElement.parentElement.appendChild(cancel);\n",
+              "  cancel.textContent = 'Cancel upload';\n",
+              "  const cancelPromise = new Promise((resolve) => {\n",
+              "    cancel.onclick = () => {\n",
+              "      resolve(null);\n",
+              "    };\n",
+              "  });\n",
+              "\n",
+              "  // Wait for the user to pick the files.\n",
+              "  const files = yield {\n",
+              "    promise: Promise.race([pickedPromise, cancelPromise]),\n",
+              "    response: {\n",
+              "      action: 'starting',\n",
+              "    }\n",
+              "  };\n",
+              "\n",
+              "  cancel.remove();\n",
+              "\n",
+              "  // Disable the input element since further picks are not allowed.\n",
+              "  inputElement.disabled = true;\n",
+              "\n",
+              "  if (!files) {\n",
+              "    return {\n",
+              "      response: {\n",
+              "        action: 'complete',\n",
+              "      }\n",
+              "    };\n",
+              "  }\n",
+              "\n",
+              "  for (const file of files) {\n",
+              "    const li = document.createElement('li');\n",
+              "    li.append(span(file.name, {fontWeight: 'bold'}));\n",
+              "    li.append(span(\n",
+              "        `(${file.type || 'n/a'}) - ${file.size} bytes, ` +\n",
+              "        `last modified: ${\n",
+              "            file.lastModifiedDate ? file.lastModifiedDate.toLocaleDateString() :\n",
+              "                                    'n/a'} - `));\n",
+              "    const percent = span('0% done');\n",
+              "    li.appendChild(percent);\n",
+              "\n",
+              "    outputElement.appendChild(li);\n",
+              "\n",
+              "    const fileDataPromise = new Promise((resolve) => {\n",
+              "      const reader = new FileReader();\n",
+              "      reader.onload = (e) => {\n",
+              "        resolve(e.target.result);\n",
+              "      };\n",
+              "      reader.readAsArrayBuffer(file);\n",
+              "    });\n",
+              "    // Wait for the data to be ready.\n",
+              "    let fileData = yield {\n",
+              "      promise: fileDataPromise,\n",
+              "      response: {\n",
+              "        action: 'continue',\n",
+              "      }\n",
+              "    };\n",
+              "\n",
+              "    // Use a chunked sending to avoid message size limits. See b/62115660.\n",
+              "    let position = 0;\n",
+              "    do {\n",
+              "      const length = Math.min(fileData.byteLength - position, MAX_PAYLOAD_SIZE);\n",
+              "      const chunk = new Uint8Array(fileData, position, length);\n",
+              "      position += length;\n",
+              "\n",
+              "      const base64 = btoa(String.fromCharCode.apply(null, chunk));\n",
+              "      yield {\n",
+              "        response: {\n",
+              "          action: 'append',\n",
+              "          file: file.name,\n",
+              "          data: base64,\n",
+              "        },\n",
+              "      };\n",
+              "\n",
+              "      let percentDone = fileData.byteLength === 0 ?\n",
+              "          100 :\n",
+              "          Math.round((position / fileData.byteLength) * 100);\n",
+              "      percent.textContent = `${percentDone}% done`;\n",
+              "\n",
+              "    } while (position < fileData.byteLength);\n",
+              "  }\n",
+              "\n",
+              "  // All done.\n",
+              "  yield {\n",
+              "    response: {\n",
+              "      action: 'complete',\n",
+              "    }\n",
+              "  };\n",
+              "}\n",
+              "\n",
+              "scope.google = scope.google || {};\n",
+              "scope.google.colab = scope.google.colab || {};\n",
+              "scope.google.colab._files = {\n",
+              "  _uploadFiles,\n",
+              "  _uploadFilesContinue,\n",
+              "};\n",
+              "})(self);\n",
+              "</script> "
+            ],
+            "text/plain": [
+              "<IPython.core.display.HTML object>"
+            ]
+          },
+          "metadata": {},
+          "output_type": "display_data"
+        }
+      ],
+      "source": [
+        "# 1. Importación de Librerías\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "import seaborn as sns\n",
+        "\n",
+        "# Configuración estética de gráficas\n",
+        "sns.set(style=\"whitegrid\")\n",
+        "plt.rcParams['figure.figsize'] = (12, 6)\n",
+        "\n",
+        "# 2. Subir el archivo CSV\n",
+        "from google.colab import files\n",
+        "print(\"Por favor, selecciona el archivo 'BASE DATOS EN PROYECTO VP 2024-2025 _AEMA.CSV.csv' en el botón de abajo:\")\n",
+        "uploaded = files.upload()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "pPRiV4dAIvUu"
+      },
+      "outputs": [],
+      "source": [
+        "# Obtener el nombre del archivo subido automáticamente\n",
+        "filename = next(iter(uploaded))\n",
+        "\n",
+        "# Leer el CSV (probamos con encoding 'latin-1' que es común para archivos en español)\n",
+        "try:\n",
+        "    df = pd.read_csv(filename, encoding='latin-1')\n",
+        "except:\n",
+        "    df = pd.read_csv(filename, encoding='utf-8')\n",
+        "\n",
+        "print(f\"✅ Archivo cargado exitosamente. Dimensiones: {df.shape[0]} filas x {df.shape[1]} columnas.\")\n",
+        "\n",
+        "# Mostrar las primeras filas y los tipos de datos\n",
+        "print(\"\\n--- Muestra de los datos ---\")\n",
+        "display(df.head())\n",
+        "\n",
+        "print(\"\\n--- Tipos de datos y nulos ---\")\n",
+        "df.info()"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "7T-b3suaI38l"
+      },
+      "source": [
+        "Paso 3: Análisis Visual Inicial (Tablas y Gráficos)\n",
+        "Para cumplir con el requisito de \"tablas y gráficos\", vamos a generar dos visualizaciones clave para entender qué tenemos.\n",
+        "\n",
+        "Mapa de Nulos: Para ver si faltan datos.\n",
+        "\n",
+        "Distribución de una variable numérica clave: Por ejemplo, la EDAD."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "_fkRJYbYI_WS"
+      },
+      "outputs": [],
+      "source": [
+        "# 1. Gráfico de Datos Faltantes (Mapa de Calor)\n",
+        "plt.figure(figsize=(12, 5))\n",
+        "sns.heatmap(df.isnull(), cbar=False, cmap='viridis', yticklabels=False)\n",
+        "plt.title('Mapa de Calor: ¿Dónde faltan datos? (Amarillo indica valor nulo)')\n",
+        "plt.show()\n",
+        "\n",
+        "# 2. Histograma de Edades (Para conocer el perfil de la gente)\n",
+        "plt.figure(figsize=(10, 5))\n",
+        "sns.histplot(df['EDAD'], bins=20, kde=True, color='skyblue')\n",
+        "plt.title('Distribución de Edades en la Base de Datos')\n",
+        "plt.xlabel('Edad')\n",
+        "plt.ylabel('Cantidad de Personas')\n",
+        "plt.show()"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Zk7pACcSJGzn"
+      },
+      "source": [
+        "Decisión Crítica:\n",
+        "Definir el Objetivo (Target)\n",
+        "Hemos analizado las columnas del archivo (VINCULADO A, ES_EMPLEO_FORMAL, MONTO DE LA PENSIÓN, PUESTO SOLICITADO, etc.).\n",
+        "Para continuar, necesitamos elejir una de estas 3 rutas.\n",
+        "A.-Clasificación\n",
+        "B.-Regresión\n",
+        "C.-Clustering"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "7d0uP5mxKvCt"
+      },
+      "outputs": [],
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "# Definimos los datos de la tabla\n",
+        "data = {\n",
+        "    \"Tipo de Modelado\": [\"Supervisado\", \"No Supervisado\", \"Por Refuerzo\"],\n",
+        "    \"Datos de Entrada\": [\"Etiquetados (Pregunta + Respuesta)\", \"No Etiquetados (Solo datos)\", \"Estados y Recompensas\"],\n",
+        "    \"Objetivo Principal\": [\"Predecir resultados\", \"Descubrir patrones\", \"Tomar decisiones secuenciales\"],\n",
+        "    \"Ejemplo Clásico\": [\"Predecir precios, filtrar spam\", \"Agrupar clientes, detectar fraudes\", \"Jugar ajedrez, navegar un robot\"]\n",
+        "}\n",
+        "\n",
+        "# Creamos el DataFrame\n",
+        "df = pd.DataFrame(data)\n",
+        "\n",
+        "# Mostramos la tabla (Colab la formatea automáticamente)\n",
+        "df"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "yr65QptiMbCA"
+      },
+      "source": [
+        "# Tipos de Modelado en Machine Learning\n",
+        "\n",
+        "Para entender el Machine Learning (ML), la forma más clara de clasificarlo es según **cómo aprende el algoritmo**.\n",
+        "\n",
+        "---\n",
+        "\n",
+        "### 1. Aprendizaje Supervisado (Supervised Learning)\n",
+        "Este es el tipo más común. El modelo se entrena con datos **etiquetados** (con respuestas correctas). Su objetivo es predecir la etiqueta de datos nuevos.\n",
+        "\n",
+        "![Aprendizaje Supervisado](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Supervised_machine_learning_in_a_nutshell.svg/600px-Supervised_machine_learning_in_a_nutshell.svg.png)\n",
+        "\n",
+        "Se divide en dos subtipos principales:\n",
+        "* **Regresión:** El resultado es un número continuo.\n",
+        "    * *Ejemplo:* Predecir precio de casas.\n",
+        "    * *Algoritmos:* Regresión Lineal, Random Forest.\n",
+        "* **Clasificación:** El resultado es una categoría.\n",
+        "    * *Ejemplo:* Spam vs No Spam.\n",
+        "    * *Algoritmos:* Regresión Logística, SVM.\n",
+        "\n",
+        "---\n",
+        "\n",
+        "### 2. Aprendizaje No Supervisado (Unsupervised Learning)\n",
+        "Aquí no hay \"profesor\". El modelo recibe datos **sin etiquetar** y busca patrones ocultos.\n",
+        "\n",
+        "* **Agrupamiento (Clustering):** Agrupa datos similares.\n",
+        "    * *Ejemplo:* Segmentación de clientes.\n",
+        "    * *Algoritmos:* K-Means, DBScan.\n",
+        "* **Reducción de Dimensionalidad:** Simplifica datos complejos.\n",
+        "    * *Ejemplo:* Compresión de imágenes.\n",
+        "    * *Algoritmos:* PCA.\n",
+        "* **Detección de Anomalías:** Identifica eventos raros (fraudes).\n",
+        "\n",
+        "---\n",
+        "\n",
+        "### 3. Aprendizaje por Refuerzo (Reinforcement Learning)\n",
+        "Aprende a base de \"prueba y error\" interactuando con un entorno mediante recompensas y castigos.\n",
+        "\n",
+        "![Reinforcement Learning](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Reinforcement_learning_diagram.svg/600px-Reinforcement_learning_diagram.svg.png)\n",
+        "\n",
+        "* **Usos:** Robótica, videojuegos (AlphaGo), vehículos autónomos.\n",
+        "\n",
+        "---\n",
+        "\n",
+        "### 4. Categorías Híbridas\n",
+        "* **Semi-supervisado:** Mezcla pocos datos etiquetados con muchos sin etiquetar.\n",
+        "* **Auto-supervisado:** El modelo genera sus propias etiquetas (base de ChatGPT/GPT).\n",
+        "\n",
+        "---\n",
+        "\n",
+        "### 5. Deep Learning (Aprendizaje Profundo)\n",
+        "Se basa en **Redes Neuronales Artificiales** profundas.\n",
+        "\n",
+        "![Red Neuronal](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Artificial_neural_network.svg/600px-Artificial_neural_network.svg.png)\n",
+        "\n",
+        "* **Especialidad:** Imágenes, video, audio, texto complejo."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "vT-jn8QkM6yU"
+      },
+      "source": [
+        "Para entender la jerarquía del entrenamiento de los modelos buscamos entender como un árbol genealógico:\n",
+        "\n",
+        "El \"Padre\" (El Tipo de Aprendizaje): Define CÓMO aprende el modelo (si tiene maestro o no).\n",
+        "\n",
+        "Supervisado\n",
+        "\n",
+        "No Supervisado\n",
+        "\n",
+        "Refuerzo\n",
+        "\n",
+        "\n",
+        "Los \"Hijos\" (La Tarea): Define QUÉ problema resuelve.\n",
+        "\n",
+        "Regresión y Clasificación: Son hijos exclusivos del Aprendizaje Supervisado. (No puedes hacer Regresión si no tienes datos etiquetados para supervisar).\n",
+        "\n",
+        "Clustering (Agrupamiento): Es hijo exclusivo del Aprendizaje No Supervisado.\n",
+        "\n",
+        "El \"Motor\" (La Tecnología): Deep Learning\n",
+        "\n",
+        "El Deep Learning no es un tipo de aprendizaje aparte, es una tecnología.\n",
+        "\n",
+        "Puede \"coexistir\" con todos. Puedes tener:\n",
+        "\n",
+        "Deep Learning Supervisado (Clasificar fotos de gatos).\n",
+        "\n",
+        "Deep Learning No Supervisado (Generar caras falsas).\n",
+        "\n",
+        "Deep Learning por Refuerzo (AlphaGo jugando ajedrez).\n",
+        "\n",
+        "Resumen Visual del proyecto:\n",
+        "\n",
+        "¿Tienes datos con la respuesta correcta (ej. Tu columna ES_EMPLEO_FORMAL)?\n",
+        "\n",
+        "Entonces es Supervisado.\n",
+        "\n",
+        "¿La respuesta es un número (Sueldo)? -> Haces Regresión.\n",
+        "\n",
+        "¿La respuesta es una categoría (Formal/Empacador)? -> Haces Clasificación. (¡Este es nuestro caso!)\n",
+        "\n",
+        "Por eso, para nuestro proyecto de Jalisco, estamos haciendo: Machine Learning -> Supervisado -> Clasificación."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Nx1I36VCOWUY"
+      },
+      "source": [
+        "\n",
+        "\n",
+        "Este proyecto de Empleabilidad de las personAS adultas mayores en Jalisco, estamos trabajando Machine Learning -> Supervisado -> Clasificación.\n",
+        "\n",
+        "\n",
+        "Pregunta: ¿Podemos predecir si una persona obtendrá un empleo FORMAL o INFORMAL?Variable Objetivo ($y$): ES_EMPLEO_FORMALVariables Predictoras ($X$): Edad, Sexo, Nivel de Estudios, Experiencia, etc.Por qué elegirla: Es un problema clásico de ML supervisado, ideal para métricas como Accuracy y Matriz de Confusión.\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "FUQqoVFaPmqc"
+      },
+      "source": [
+        "La Clasificación Supervisada es uno de los pilares del Machine Learning y es perfecta para nuestro proyecto.\n",
+        "Queremos: Clasificar Empleo Formal vs. Informal para luego predecir la relación de las otras variables en relación a Y, emppleo formal o informal.\n",
+        "Vamos a entrenar un modelo que aprenda a distinguir patrones:\n",
+        "Entrada ($X$): Edad, estudios, si tiene pensión, discapacidad, experiencia, etc.Salida ($y$): ¿El empleo será Formal (1) o Informal (0)?Para cumplir con el criterio de \"Preparación de Datos (20%)\", no podemos meter los datos \"crudos\" al modelo. Las máquinas no entienden texto como \"Primaria Completa\" o \"Femenino\"; solo entienden números.Sigue estos 3 pasos en tu Colab para transformar tus datos en \"combustible\" para la IA.Paso 1: Selección de Variables y Limpieza de \"Fugas\"En Machine Learning, debemos evitar el \"Data Leakage\" (hacer trampa)\n",
+        "Ejemplo de trampa: Usar la columna TIPO DE EMPLEO AL QUE SE VINCULÓ para predecir ES_EMPLEO_FORMAL. ¡Son lo mismo! El modelo sacaría 100% de calificación pero no serviría en la vida real.También quitaremos identificadores únicos o fechas que no aportan valor predictivo directo ahora mismo."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "lO_Z_uK1fJKd"
+      },
+      "outputs": [],
+      "source": [
+        "from IPython.display import Image, display\n",
+        "import ipywidgets as widgets\n",
+        "from IPython.display import clear_output\n",
+        "\n",
+        "# Crear botón para subir archivo\n",
+        "uploader = widgets.FileUpload(\n",
+        "    accept='image/*',  # Solo imágenes\n",
+        "    multiple=False,    # Solo un archivo\n",
+        "    description='Subir imagen:',\n",
+        "    button_style='info'\n",
+        ")\n",
+        "\n",
+        "display(uploader)\n",
+        "\n",
+        "# Botón para mostrar la imagen cargada\n",
+        "def show_uploaded_image(b):\n",
+        "    clear_output(wait=True)\n",
+        "    display(uploader)\n",
+        "    if len(uploader.value) > 0:\n",
+        "        # Obtener los datos de la imagen\n",
+        "        image_data = list(uploader.value.values())[0]['content']\n",
+        "\n",
+        "        # Guardar temporalmente en disco (opcional)\n",
+        "        with open('imagen_subida.png', 'wb') as f:\n",
+        "            f.write(image_data)\n",
+        "\n",
+        "        # Mostrar la imagen\n",
+        "        display(Image(data=image_data))\n",
+        "        print(\"✅ Imagen cargada y mostrada correctamente.\")\n",
+        "    else:\n",
+        "        print(\"⚠️ No se seleccionó ninguna imagen.\")\n",
+        "\n",
+        "# Botón para mostrar\n",
+        "show_button = widgets.Button(description=\"Mostrar imagen\")\n",
+        "show_button.on_click(show_uploaded_image)\n",
+        "display(show_button)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "Jf4DDKJpSUpS"
+      },
+      "outputs": [],
+      "source": [
+        "# 1. Crear una copia para no dañar el original\n",
+        "df_model = df.copy()\n",
+        "\n",
+        "# 2. Definir nuestra variable objetivo (Target)\n",
+        "target = 'ES_EMPLEO_FORMAL'\n",
+        "\n",
+        "# 3. Selección de variables predictoras (Features)\n",
+        "# Conservamos solo lo que define el PERFIL del candidato\n",
+        "columnas_a_usar = [\n",
+        "    'EDAD',\n",
+        "    'SEXO',\n",
+        "    'ESTUDIOS',            # Nivel educativo\n",
+        "    'EXPERIENCIA',         # Área de experiencia\n",
+        "    'TIENE_PENSION',       # (0 o 1)\n",
+        "    'TIENE_DISCAPACIDAD',  # (0 o 1)\n",
+        "    'SABE_COMPUTACION',    # (0 o 1)\n",
+        "    'SEXO_FEMENINO',       # (0 o 1) - Ya venía preprocesada\n",
+        "    'ESTUDIOS_ORDINAL',    # (Numérica) - Ya venía preprocesada\n",
+        "    'MONTO DE LA PENSIÓN', # Podría influir\n",
+        "    target                 # La que queremos predecir\n",
+        "]\n",
+        "\n",
+        "# Filtramos el dataframe (si alguna columna no existe, avísame para ajustarlo)\n",
+        "try:\n",
+        "    df_clean = df_model[columnas_a_usar].copy()\n",
+        "    print(\"✅ Variables seleccionadas correctamente.\")\n",
+        "except KeyError as e:\n",
+        "    print(f\"❌ Error: No encuentro la columna {e}. Verifica los nombres exactos con df.columns\")\n",
+        "\n",
+        "# 4. Limpieza de Nulos (Imputación)\n",
+        "# Rellenar numéricos con la mediana y textos con \"Desconocido\"\n",
+        "for col in df_clean.columns:\n",
+        "    if df_clean[col].dtype == 'object':\n",
+        "        df_clean[col] = df_clean[col].fillna('Desconocido')\n",
+        "    else:\n",
+        "        df_clean[col] = df_clean[col].fillna(df_clean[col].median())\n",
+        "\n",
+        "print(\"✅ Valores nulos rellenados.\")\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "ZNTVGC45Smrr"
+      },
+      "source": [
+        "Paso 2: Codificación (Convertir Texto a Números)\n",
+        "Los modelos matemáticos no saben multiplicar \"Secundaria\" * \"Femenino\". Usaremos One-Hot Encoding para convertir categorías en columnas de ceros y unos."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "L-FmwxznSzLp"
+      },
+      "outputs": [],
+      "source": [
+        "# Convertir variables categóricas (Texto) en numéricas (Dummies)\n",
+        "# drop_first=True ayuda a evitar redundancia (colinealidad)\n",
+        "df_procesado = pd.get_dummies(df_clean, drop_first=True)\n",
+        "\n",
+        "print(\"--- Así se ve la base de datos lista para la IA ---\")\n",
+        "display(df_procesado.head())\n",
+        "print(f\"\\nDimensiones finales: {df_procesado.shape}\")\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "96fpGaJz3sMm"
+      },
+      "outputs": [],
+      "source": [
+        "# Vamos a \"espiar\" los datos exactos que usó el modelo\n",
+        "print(\"--- ASÍ SE VEN TUS VARIABLES CODIFICADAS (X) ---\")\n",
+        "print(X.head(10)) # Muestra las primeras 10 filas\n",
+        "\n",
+        "print(\"\\n--- TIPO DE DATOS ---\")\n",
+        "print(X.dtypes)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "va2trVW7Tlft"
+      },
+      "source": [
+        "Paso 3: División (Entrenamiento vs. Prueba)\n",
+        "Para evaluar si el modelo realmente \"aprendió\" o solo memorizó, debemos esconderle una parte de los datos (el examen final).\n",
+        "\n",
+        "80% para Entrenar (Train).\n",
+        "\n",
+        "20% para Validar (Test)."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "JFB_GnISTulw"
+      },
+      "outputs": [],
+      "source": [
+        "from sklearn.model_selection import train_test_split\n",
+        "\n",
+        "# Separar X (Preguntas) de y (Respuestas)\n",
+        "X = df_procesado.drop(target, axis=1)\n",
+        "y = df_procesado[target]\n",
+        "\n",
+        "# Dividir los datos (Semilla 42 para que siempre salga lo mismo)\n",
+        "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n",
+        "\n",
+        "print(f\"✅ Datos divididos:\")\n",
+        "print(f\"   - Entrenamiento: {X_train.shape[0]} personas\")\n",
+        "print(f\"   - Prueba (Examen): {X_test.shape[0]} personas\")"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "2uPV6Sv6tIau"
+      },
+      "source": [
+        "Con los datos divididos en \"Libros de estudio\" (Train) y \"Examen final\" (Test).\n",
+        "\n",
+        "Ahora entramos a la fase de \"Aplicación de modelos y comparación\".\n",
+        "\n",
+        "Vamos a entrenar dos modelos clásicos para tener un punto de comparación:\n",
+        "\n",
+        "Regresión Logística: El modelo base por excelencia. Buscamos trazar una línea (o hiperplano) que separe a los que consiguen empleo formal de los que no.\n",
+        "\n",
+        "Árbol de Decisión: Un modelo que toma decisiones tipo flujo (\"Si tiene > 60 años y sabe computación, entonces...\")."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "D8yu-awA5vU-"
+      },
+      "outputs": [],
+      "source": [
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "from sklearn.model_selection import train_test_split\n",
+        "from sklearn.linear_model import LogisticRegression\n",
+        "from sklearn.metrics import classification_report, confusion_matrix\n",
+        "import matplotlib.pyplot as plt\n",
+        "import seaborn as sns\n",
+        "\n",
+        "# --- PASO 1: CARGAR EL ARCHIVO CON EL NOMBRE EXACTO ---\n",
+        "# Nota: Copié el nombre tal cual apareció en tu subida\n",
+        "nombre_archivo = 'BASE DATOS EN PROYECTO  VP 2024-2025 _AEMA.CSV.csv'\n",
+        "\n",
+        "try:\n",
+        "    df = pd.read_csv(nombre_archivo)\n",
+        "    print(\"✅ ¡Archivo cargado correctamente!\")\n",
+        "    print(f\"Total de datos: {len(df)} filas.\")\n",
+        "except FileNotFoundError:\n",
+        "    print(\"❌ ERROR: No encuentro el archivo. Verifica que esté en la carpeta 📁 de la izquierda.\")\n",
+        "    # Detenemos el código si no hay archivo\n",
+        "    raise\n",
+        "\n",
+        "# --- PASO 2: VERIFICAR QUE EXISTAN LAS COLUMNAS ---\n",
+        "# Definimos las columnas que el modelo necesita\n",
+        "variables_predictoras = ['EDAD', 'ESTUDIOS_ORDINAL', 'SEXO_FEMENINO', 'TIENE_DISCAPACIDAD', 'TIENE_PENSION']\n",
+        "variable_objetivo = 'ES_EMPLEO_FORMAL'\n",
+        "\n",
+        "# Verificación rápida\n",
+        "cols_faltantes = [col for col in variables_predictoras + [variable_objetivo] if col not in df.columns]\n",
+        "if cols_faltantes:\n",
+        "    print(f\"❌ CUIDADO: Faltan estas columnas en el Excel nuevo: {cols_faltantes}\")\n",
+        "else:\n",
+        "    print(\"✅ Todas las columnas necesarias existen.\")\n",
+        "\n",
+        "    # --- PASO 3: LIMPIEZA Y ENTRENAMIENTO ---\n",
+        "    df_clean = df[variables_predictoras + [variable_objetivo]].dropna()\n",
+        "\n",
+        "    X = df_clean[variables_predictoras]\n",
+        "    y = df_clean[variable_objetivo]\n",
+        "\n",
+        "    # Separar datos\n",
+        "    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n",
+        "\n",
+        "    # Entrenar\n",
+        "    modelo = LogisticRegression(max_iter=1000, class_weight='balanced')\n",
+        "    modelo.fit(X_train, y_train)\n",
+        "\n",
+        "    # --- PASO 4: RESULTADOS (ODDS RATIO) ---\n",
+        "    coeficientes = pd.DataFrame({\n",
+        "        'Variable': variables_predictoras,\n",
+        "        'Odds Ratio (Impacto)': np.exp(modelo.coef_[0])\n",
+        "    })\n",
+        "\n",
+        "    print(\"\\n\" + \"=\"*40)\n",
+        "    print(\" RESULTADOS DEL MODELO (ODDS RATIO)\")\n",
+        "    print(\"=\"*40)\n",
+        "    print(coeficientes)\n",
+        "    print(\"\\nInterpretar: \\n> 1: Ayuda a tener empleo formal.\\n< 1: Empuja a ser empacador.\")\n",
+        "\n",
+        "    # --- PASO 5: GRÁFICA ---\n",
+        "    y_pred = modelo.predict(X_test)\n",
+        "    cm = confusion_matrix(y_test, y_pred)\n",
+        "    plt.figure(figsize=(6,4))\n",
+        "    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',\n",
+        "                xticklabels=['Empacador', 'Formal'],\n",
+        "                yticklabels=['Empacador', 'Formal'])\n",
+        "    plt.title('Matriz de Confusión')\n",
+        "    plt.show()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "pOHu5V7a6Wb0"
+      },
+      "outputs": [],
+      "source": [
+        "from sklearn.linear_model import LogisticRegression\n",
+        "from sklearn.tree import DecisionTreeClassifier\n",
+        "from sklearn.metrics import accuracy_score, confusion_matrix, classification_report\n",
+        "\n",
+        "# --- 1. Inicializar los modelos ---\n",
+        "# max_iter=1000 ayuda a que la regresión matemática converja sin errores\n",
+        "modelo_logistico = LogisticRegression(max_iter=1000, random_state=42)\n",
+        "modelo_arbol = DecisionTreeClassifier(max_depth=5, random_state=42) # Profundidad limitada para evitar memorización\n",
+        "\n",
+        "# --- 2. Entrenar (Fit) ---\n",
+        "print(\"Entrenando Regresión Logística...\")\n",
+        "modelo_logistico.fit(X_train, y_train)\n",
+        "\n",
+        "print(\"Entrenando Árbol de Decisión...\")\n",
+        "modelo_arbol.fit(X_train, y_train)\n",
+        "\n",
+        "# --- 3. Predecir (El Examen) ---\n",
+        "predicciones_log = modelo_logistico.predict(X_test)\n",
+        "predicciones_arbol = modelo_arbol.predict(X_test)\n",
+        "\n",
+        "# --- 4. Evaluar (Calificaciones) ---\n",
+        "acc_log = accuracy_score(y_test, predicciones_log)\n",
+        "acc_arbol = accuracy_score(y_test, predicciones_arbol)\n",
+        "\n",
+        "print(f\"\\n🏆 RESULTADOS DEL EXAMEN (Accuracy):\")\n",
+        "print(f\"   - Regresión Logística: {acc_log:.2%}\")\n",
+        "print(f\"   - Árbol de Decisión:   {acc_arbol:.2%}\")\n",
+        "\n",
+        "# --- 5. Visualizar la Matriz de Confusión (Comparativa) ---\n",
+        "fig, axes = plt.subplots(1, 2, figsize=(14, 5))\n",
+        "\n",
+        "# Matriz Regresión Logística\n",
+        "sns.heatmap(confusion_matrix(y_test, predicciones_log), annot=True, fmt='d', cmap='Blues', ax=axes[0])\n",
+        "axes[0].set_title(f'Regresión Logística (Acc: {acc_log:.2f})')\n",
+        "axes[0].set_xlabel('Predicción (0=Informal, 1=Formal)')\n",
+        "axes[0].set_ylabel('Realidad')\n",
+        "\n",
+        "# Matriz Árbol de Decisión\n",
+        "sns.heatmap(confusion_matrix(y_test, predicciones_arbol), annot=True, fmt='d', cmap='Greens', ax=axes[1])\n",
+        "axes[1].set_title(f'Árbol de Decisión (Acc: {acc_arbol:.2f})')\n",
+        "axes[1].set_xlabel('Predicción (0=Informal, 1=Formal)')\n",
+        "axes[1].set_ylabel('Realidad')\n",
+        "\n",
+        "plt.show()\n",
+        "\n",
+        "# Reporte detallado\n",
+        "print(\"\\n--- Reporte Detallado: Árbol de Decisión ---\")\n",
+        "print(classification_report(y_test, predicciones_arbol))"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "34EohM5I6y-d"
+      },
+      "source": [
+        "Análisis de Resultados (Interpretación)\n",
+        "Una vez que corrimos el código, obtuvimos dos mapas de calor (Matrices de Confusión).\n",
+        "Para cumplir con la sección de \"Interpretación y discusión de resultados\",\n",
+        "\n",
+        "¿Qué modelo tuvo mayor Accuracy (Exactitud general)?\n",
+        "\n",
+        "Miremos los cuadros de la matriz:\n",
+        "\n",
+        "Verdaderos Positivos (Cuadrante inferior derecho): ¿Cuál modelo predijo correctamente más empleos Formales?\n",
+        "\n",
+        "Falsos Negativos (Cuadrante inferior izquierdo): ¿Algún modelo dijo que sería \"Informal\" cuando en realidad era \"Formal\"? (Este es un error costoso)."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "sm_-GLSa7k8G"
+      },
+      "source": [
+        "Discusión de Resultados del Modelo de Árbol de Decisión:\n",
+        "\n",
+        "\"El modelo alcanzó una exactitud global (Accuracy) del 75%, lo cual indica un rendimiento general aceptable.\n",
+        "Sin embargo, al analizar el reporte de clasificación, observamos un fenómeno de desbalance de clases.\n",
+        "\n",
+        "La base de datos contiene significativamente más registros de empleos 'Informales' (Support: 97) que 'Formales' (Support: 33). Como consecuencia, el modelo presenta un sesgo hacia la clase mayoritaria:\n",
+        "\n",
+        "Tiene una alta capacidad para detectar empleos informales (Recall: 0.86).\n",
+        "\n",
+        "Presenta dificultades para identificar correctamente los empleos formales (Recall: 0.42), confundiéndolos frecuentemente con informales.\n",
+        "\n",
+        "Esto sugiere que, para futuras iteraciones, sería necesario aplicar técnicas de balanceo de datos (como SMOTE o sub-sampling) para mejorar la sensibilidad del modelo hacia la clase minoritaria (Empleo Formal).\""
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "HYauDT_DAnOG"
+      },
+      "source": [
+        "Para cumplir con el criterio de \"Justificación del modelo final\", vamos a aplicar una técnica muy potente pero sencilla llamada Ponderación de Clases (Class Weighting).\n",
+        "\n",
+        "La Ponderación de Clases (class_weight) es una estrategia de balanceo algorítmico.\n",
+        "\n",
+        "Es crucial entender la diferencia sutil entre \"Balancear los Datos\" y \"Balancear el Modelo\":\n",
+        "\n",
+        "1. ¿Cómo funciona la Ponderación? (La analogía del Examen)\n",
+        "Imagina que tu modelo es un alumno presentando un examen de 100 preguntas:\n",
+        "\n",
+        "Sin Ponderación (Lo que realizamos primero):\n",
+        "\n",
+        "97 preguntas son sobre \"Empleo Informal\".\n",
+        "\n",
+        "33 preguntas son sobre \"Empleo Formal\".\n",
+        "\n",
+        "Todas valen 1 punto.\n",
+        "\n",
+        "Estrategia del alumno: \"Ignoraré el tema de 'Formal'. Si contesto todo como 'Informal', sacaré 75/100. ¡Pasé!\" (Esto explica tu Accuracy del 75% con Recall bajo).\n",
+        "\n",
+        "Con Ponderación (class_weight='balanced'):\n",
+        "\n",
+        "El profesor (Scikit-Learn) cambia las reglas.\n",
+        "\n",
+        "Las preguntas de \"Informal\" valen 0.5 puntos.\n",
+        "\n",
+        "Las preguntas de \"Formal\" valen 3 puntos.\n",
+        "\n",
+        "Nueva estrategia: \"¡Ojo! Si ignoro las de 'Formal', reprobaré porque valen mucho. Tengo que esforzarme en aprenderlas\".\n",
+        "\n",
+        "¿Qué vamos a hacer?\n",
+        "Imagina que tu modelo es un estudiante. Hasta ahora, como había muchos ejemplos de empleos \"Informales\" y pocos \"Formales\", el estudiante aprendió que \"apostar siempre por Informal\" es una apuesta segura para pasar el examen.\n",
+        "\n",
+        "Con el parámetro class_weight='balanced', le diremos al modelo:\n",
+        "\n",
+        "\"¡Atención! Acertar un empleo FORMAL vale el triple de puntos que uno Informal. Si te equivocas en los Formales, el castigo es mayor.\"\n",
+        "\n",
+        "Esto obliga al algoritmo a prestar atención a la clase minoritaria."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "HIW_CMZWCUNj"
+      },
+      "source": [
+        "En la tabla de enseguida, explicamos por qué escogimos esta técnica y no otro"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "-lw8jZ3oCPVg"
+      },
+      "outputs": [],
+      "source": [
+        "from sklearn.tree import DecisionTreeClassifier\n",
+        "from sklearn.metrics import classification_report\n",
+        "\n",
+        "# 1. Configurar el modelo con Balanceo (El \"truco\")\n",
+        "# class_weight='balanced' es lo que hace que la IA preste atención a los casos difíciles\n",
+        "modelo_arbol_bal = DecisionTreeClassifier(class_weight='balanced', max_depth=5, random_state=42)\n",
+        "\n",
+        "# 2. Entrenar el modelo con los datos de estudio\n",
+        "modelo_arbol_bal.fit(X_train, y_train)\n",
+        "\n",
+        "# 3. Realizar el examen (Predecir)\n",
+        "pred_arbol_bal = modelo_arbol_bal.predict(X_test)\n",
+        "\n",
+        "# 4. Generar la TABLA DE RESULTADOS\n",
+        "print(\"=\"*60)\n",
+        "print(\"📊 REPORTE FINAL: ÁRBOL DE DECISIÓN BALANCEADO\")\n",
+        "print(\"=\"*60)\n",
+        "print(classification_report(y_test, pred_arbol_bal, target_names=['Informal', 'Formal']))"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "UrYifjBWDMLy"
+      },
+      "source": [
+        "Por supuesto, nos quedan dudas del porque, si nuestra base tiene 657 datos, solo se mencionan 130.\n",
+        "\n",
+        "Esa es una observación muy aguda y demuestra que estamos y debemos prestar atención a los detalles, una cualidad esencial en Ciencia de Datos.\n",
+        "\n",
+        "Los datos, no se han borrado ni perdido las otras 500+ personas.\n",
+        "Aquí explicamos que pasó:\n",
+        "\n",
+        "La razón: La División \"Entrenamiento vs. Examen\"\n",
+        "En el Paso 3 usamos este comand:\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "QLwGwJTxEZzT"
+      },
+      "outputs": [],
+      "source": [
+        "# Auditoría de Datos (Conteo de filas)\n",
+        "print(f\"--- REVISIÓN DE CANTIDADES ---\")\n",
+        "# Usamos len() que significa 'length' (longitud)\n",
+        "print(f\"1. Total de personas en la base limpia: {len(X)}\")\n",
+        "print(f\"2. Personas usadas para ESTUDIAR (80%): {len(X_train)}\")\n",
+        "print(f\"3. Personas usadas para el EXAMEN (20%):  {len(X_test)}\")\n",
+        "\n",
+        "print(f\"\\nVerificación: {len(X_train)} + {len(X_test)} = {len(X_train) + len(X_test)}\")"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "TxCuAhViEnDh"
+      },
+      "source": [
+        "Vamos a recuperar los números de la tabla de resultados (Recall y F1-Score) que generamos con el modelo balanceado."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "E2KKpGsnEryF"
+      },
+      "outputs": [],
+      "source": [
+        "from sklearn.metrics import classification_report\n",
+        "\n",
+        "# Solo mostramos el reporte del modelo que ya entrenamos\n",
+        "print(\"=\"*60)\n",
+        "print(\"📊 REPORTE FINAL: ÁRBOL DE DECISIÓN BALANCEADO\")\n",
+        "print(\"=\"*60)\n",
+        "print(classification_report(y_test, pred_arbol_bal, target_names=['Informal', 'Formal']))"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "GNueRtjiFUBY"
+      },
+      "source": [
+        "El Set de Entrenamiento (80%):\n",
+        "Aproximadamente 527 personas.\n",
+        "Estas son las que la computadora usó para \"estudiar\" y ajustar sus matemáticas.\n",
+        "El reporte NO las muestra porque sería hacer trampa evaluarse con las mismas preguntas que ya estudió.\n",
+        "El Set de Prueba (20%): Aproximadamente 130 personas.\n",
+        "Estas son las \"preguntas sorpresa\" del examen final.\n",
+        "El reporte classification_report solo muestra los resultados de este examen final.Shutterstock\n",
+        "Hagamos las matemáticas.\n",
+        "Total aproximado: 657 filas.20% para el examen (Test): $657 \\times 0.20 = 131.4$ personas.\n",
+        "Nuestro reporte muestra: $97 + 33 = 130$ personas.(La diferencia de 1 persona suele ser por redondeo o por alguna fila que se eliminó si tenía todos los datos vacíos en la limpieza).\n",
+        "Código para verificarlo (Tranquilidad mental)\n",
+        "Queremos estar 100% segura de que nadie desapareció, corre este pequeño código de verificación. Te mostrará dónde está cada grupo:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "6CL12gf_F95X"
+      },
+      "outputs": [],
+      "source": [
+        "print(f\"--- Auditoría de Datos ---\")\n",
+        "print(f\"Total original (aprox): {len(df)}\")\n",
+        "print(f\"Personas usadas para ESTUDIAR (Train): {len(X_train)}\")\n",
+        "print(f\"Personas usadas para el EXAMEN (Test):  {len(X_test)}\")\n",
+        "print(f\"Suma total: {len(X_train) + len(X_test)}\")"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "qS5xUKUKHomw"
+      },
+      "source": [
+        "**4. Discusión de Resultados**\n",
+        "\"En la primera iteración del proyecto, se entrenó un Árbol de Decisión estándar que presentó un sesgo significativo hacia la clase mayoritaria (Empleo Informal).\n",
+        "Dicho modelo obtuvo un Recall deficiente de 0.42 para la clase 'Formal', lo que implicaba que el algoritmo fallaba en identificar a más de la mitad de los candidatos con empleo formal.\n",
+        "\n",
+        "Para solucionar este problema de desbalance, se implementó la técnica de Ponderación de Clases (class_weight='balanced'), la cual asigna un peso mayor a los errores cometidos en la clase minoritaria durante el entrenamiento.\n",
+        "\n",
+        "Tras el re-entrenamiento, los resultados mostraron una mejora sustancial en la sensibilidad del modelo:\n",
+        "\n",
+        "Recall (Clase Formal): Aumentó drásticamente de 0.42 a 0.73.\n",
+        "\n",
+        "F1-Score: Se estabilizó en 0.82, lo que indica un mejor equilibrio entre precisión y recuperación.\n",
+        "\n",
+        "Aunque el Accuracy global pudo haber variado ligeramente, este nuevo modelo es mucho más robusto y útil para el objetivo del proyecto, ya que prioriza no perder de vista a los candidatos aptos para empleos formales.\"\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "iQREjmeYHr1v"
+      },
+      "source": [
+        "**5.-Conclusiones**\n",
+        "\"El desarrollo de este Proyecto Integrador permitió aplicar un flujo de trabajo completo de Ciencia de Datos (End-to-End), llegando a las siguientes conclusiones clave:\n",
+        "\n",
+        "Importancia de la Preparación de Datos:\n",
+        "\n",
+        "Se demostró que la **limpieza,** imputación de nulos y la codificación de variables (One-Hot Encoding) son pasos más determinantes para el éxito del modelo que la elección del algoritmo en sí.\n",
+        "\n",
+        "Eficacia del Modelo Supervisado:\n",
+        "El Árbol de Decisión resultó ser la elección ideal por su alta interpretabilidad. A diferencia de modelos de 'caja negra', el árbol nos permitió generar un esquema visual (ver Figura del Árbol) para entender las reglas de negocio exactas que determinan la formalidad del empleo.\n",
+        "\n",
+        "Solución al Desbalance: Se validó que, en bases de datos socioeconómicas reales (donde suele haber desproporción de clases), aplicar técnicas de balanceo como Class Weighting es indispensable para evitar modelos sesgados.\"\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "5gduwkzUI8ZS"
+      },
+      "source": [
+        "**6. Trabajo Futuro**\n",
+        "\"Para dar continuidad a este análisis y mejorar el desempeño en futuras iteraciones, se propone:\n",
+        "\n",
+        "Ingeniería de Características: Agrupar categorías con poca representación (ej. tipos de discapacidad poco comunes) para reducir el ruido en los datos.\n",
+        "\n",
+        "Optimización de Hiperparámetros: Utilizar GridSearchCV para encontrar matemáticamente la profundidad óptima del árbol, evitando el sobreajuste (overfitting).\n",
+        "\n",
+        "Exploración de Modelos de Ensamble: Probar algoritmos más avanzados como Random Forest o XGBoost, que suelen ofrecer mayor precisión al combinar múltiples árboles de decisión.\""
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "_x7QjGlIJ5Gg"
+      },
+      "outputs": [],
+      "source": [
+        "import matplotlib.pyplot as plt\n",
+        "import seaborn as sns\n",
+        "from sklearn.tree import plot_tree\n",
+        "from sklearn.metrics import confusion_matrix\n",
+        "from google.colab import files  # Para descargar automáticamente\n",
+        "\n",
+        "# Configuración para que se vean bonitas\n",
+        "%matplotlib inline\n",
+        "plt.rcParams['figure.dpi'] = 150 # Alta resolución\n",
+        "\n",
+        "# --- 1. GENERAR Y GUARDAR LA MATRIZ DE CONFUSIÓN (El Mapa de Calor) ---\n",
+        "plt.figure(figsize=(6, 5))\n",
+        "sns.heatmap(confusion_matrix(y_test, pred_arbol_bal),\n",
+        "            annot=True, fmt='d', cmap='Greens', annot_kws={\"size\": 14})\n",
+        "\n",
+        "plt.title('Matriz de Confusión: Árbol Balanceado', fontsize=14)\n",
+        "plt.xlabel('Predicción de la IA', fontsize=12)\n",
+        "plt.ylabel('Realidad', fontsize=12)\n",
+        "\n",
+        "# Guardar y Descargar\n",
+        "plt.savefig('matriz_final_balanceada.png', dpi=300, bbox_inches='tight')\n",
+        "plt.show()\n",
+        "files.download('matriz_final_balanceada.png')\n",
+        "print(\"✅ Matriz descargada.\")\n",
+        "\n",
+        "# --- 2. GENERAR Y GUARDAR EL ESQUEMA DEL ÁRBOL (El Diagrama) ---\n",
+        "plt.figure(figsize=(22, 12)) # Lienzo muy grande para que quepa\n",
+        "\n",
+        "plot_tree(modelo_arbol_bal,\n",
+        "          filled=True,\n",
+        "          feature_names=X.columns,\n",
+        "          class_names=['Informal', 'Formal'],\n",
+        "          rounded=True,\n",
+        "          fontsize=11,\n",
+        "          max_depth=3) # Mostramos solo los 3 niveles principales\n",
+        "\n",
+        "plt.title('Esquema de Decisiones del Modelo (Reglas de Negocio)', fontsize=18)\n",
+        "\n",
+        "# Guardar y Descargar\n",
+        "plt.savefig('esquema_arbol_final.png', dpi=300, bbox_inches='tight')\n",
+        "plt.show()\n",
+        "files.download('esquema_arbol_final.png')\n",
+        "print(\"✅ Árbol descargado.\")"
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
